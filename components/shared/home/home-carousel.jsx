@@ -1,6 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+import { connectToDatabase } from '@/lib/db'
 // import { cn } from '@/lib/buttotils'
 import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/image'
@@ -12,13 +13,14 @@ import React, { useRef } from 'react'
 
 const HomeCarousel = ({items}) => {
     const plugin = useRef(Autoplay({delay: 3000, stopOnInteraction: true}))
-  return (
+connectToDatabase()
+    return (
     <Carousel
         dir='ltr'
         plugins={[plugin.current]}
         className={'w-full mx-auto'}
         onMouseEnter={plugin.current.stop}
-        onMouseLEave={plugin.current.reset}
+        onMouseLeave={plugin.current.reset}
      >
         <CarouselContent>
         {
